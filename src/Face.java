@@ -13,8 +13,7 @@ public class Face
      * @brief Instantiate a face
      * @param c Colour enum
      */
-    public Face(Colour c)
-    {
+    public Face(Colour c) {
         // Colour of face is determined by its middle element
         for (int i = 0; i < grid.length; i++) {
             grid[i] = new Colour[]{c, c, c};
@@ -25,8 +24,7 @@ public class Face
      * @brief Return colour of face
      * @return Colour of face
      */
-    public Colour getColour()
-    {
+    public Colour getColour() {
         return grid[1][1];
     }
 
@@ -34,8 +32,7 @@ public class Face
      * @brief Return grid of tiles representing cube face
      * @return 2D array of Colour representing cube face
      */
-    public Colour[][] getTiles()
-    {
+    public Colour[][] getTiles() {
         return grid;
     }
 
@@ -46,31 +43,25 @@ public class Face
      * @param xy Integer specifying the row or column (0, 1, 2)
      * @return Three tiles of a row or column
      */
-    public Colour[] getThree(boolean row, Integer xy)
-    {
+    public Colour[] getThree(boolean row, int xy) {
         Colour[] colours = new Colour[3];
         // Row
-        if (row)
-        {
+        if (row) {
             colours = grid[xy];
         }
 
         // Column (top tile down)
-        else
-        {
-            for (int i = 0; i < grid.length; i++)
-            {
+        else {
+            for (int i = 0; i < grid.length; i++) {
                 colours[i] = grid[i][xy];
             }
         }
         return colours;
     }
 
-    private Colour[] reverse(Colour[] cs)
-    {
+    private Colour[] reverse(Colour[] cs) {
         Colour[] rev = new Colour[cs.length];
-        for (int i = 0; i < cs.length; i++)
-        {
+        for (int i = 0; i < cs.length; i++) {
             rev[i] = cs[cs.length - i - 1];
         }
         return rev;
@@ -82,10 +73,8 @@ public class Face
      * @param xy Integer specifying the row or column
      * @throws UnsupportedOperationException if center tile manipulation is attempted
      */
-    public void setThree(boolean row, Integer xy, Colour[] cs, boolean reverse)
-    {
-        if (xy == 1)
-        {
+    public void setThree(boolean row, Integer xy, Colour[] cs, boolean reverse) {
+        if (xy == 1) {
             throw new UnsupportedOperationException("Cannot alter center tile");
         }
 
@@ -95,15 +84,12 @@ public class Face
         else { csCorrected = cs; }
 
         // Row
-        if (row)
-        {
+        if (row) {
             grid[xy] = csCorrected;
         }
         // Column
-        else
-        {
-            for (int i = 0; i < grid.length; i++)
-            {
+        else {
+            for (int i = 0; i < grid.length; i++) {
                 grid[i][xy] = csCorrected[i];
             }
         }
@@ -114,15 +100,10 @@ public class Face
      * @param g Grid of colours
      * @throws UnsupportedOperationException if colour of center tile changes
      */
-    public void setFace(Colour[][] g)
-    {
-        if (this.getColour() != g[1][1])
-        {
+    public void setFace(Colour[][] g) {
+        if (this.getColour() != g[1][1]) {
             throw new UnsupportedOperationException("Cannot alter center tile");
         }
-        else
-        {
-            grid = g;
-        }
+        grid = g;
     }
 }
