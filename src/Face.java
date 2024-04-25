@@ -7,17 +7,28 @@ import java.util.Arrays;
  */
 public class Face
 {
-    private Colour[][] grid = new Colour[3][3];
+    private Surface surface;
+    private Colour[][] grid;
 
     /**
      * @brief Instantiate a face
      * @param c Colour enum
      */
-    public Face(Colour c) {
-        // Colour of face is determined by its middle element
+    public Face(Surface surface, Colour c) {
+        this.surface = surface;
+
+        grid = new Colour[3][3];
         for (int i = 0; i < grid.length; i++) {
             grid[i] = new Colour[]{c, c, c};
         }
+    }
+
+    /**
+     * @brief Return surface of face
+     * @return Surface of face
+     */
+    public Surface getSurface() {
+        return surface;
     }
 
     /**

@@ -25,19 +25,19 @@ class RelativeFace {
 public class Cube
 {
     // Declare and instantiate cube faces
-    private static final Face front = new Face(Colour.WHITE);
-    private static final Face back = new Face(Colour.YELLOW);
-    private static final Face upper = new Face(Colour.GREEN);
-    private static final Face down = new Face(Colour.BLUE);
-    private static final Face left = new Face(Colour.RED);
-    private static final Face right = new Face(Colour.ORANGE);
+    private static final Face front = new Face(Surface.FRONT, Colour.WHITE);
+    private static final Face back = new Face(Surface.BACK, Colour.YELLOW);
+    private static final Face up = new Face(Surface.UP, Colour.GREEN);
+    private static final Face down = new Face(Surface.DOWN, Colour.BLUE);
+    private static final Face left = new Face(Surface.LEFT, Colour.RED);
+    private static final Face right = new Face(Surface.RIGHT, Colour.ORANGE);
 
-    private static HashMap<Integer, Face> cubeMapping;
+    private static final HashMap<Integer, Face> cubeMapping;
     static {
         cubeMapping = new HashMap<>();
         cubeMapping.put(0, front);
         cubeMapping.put(1, back);
-        cubeMapping.put(2, upper);
+        cubeMapping.put(2, up);
         cubeMapping.put(3, down);
         cubeMapping.put(4, left);
         cubeMapping.put(5, right);
@@ -78,13 +78,13 @@ public class Cube
 
         // Adjust three tiles of four adjacent faces
         HashMap<Relative, RelativeFace> relativeInfo  = new HashMap<>();
-        switch (f.getColour()) {
-            case WHITE:
+        switch (f.getSurface()) {
+            case FRONT:
                 // RELATIVE UPPER
                 relativeInfo.put(
                         Relative.UPPER,
                         new RelativeFace(
-                                upper,
+                                up,
                                 true,
                                 2,
                                 !cw));
@@ -114,7 +114,7 @@ public class Cube
                                 cw));
                 break;
 
-            case YELLOW:
+            case BACK:
                 // RELATIVE UPPER
                 relativeInfo.put(
                         Relative.UPPER,
@@ -127,7 +127,7 @@ public class Cube
                 relativeInfo.put(
                         Relative.DOWN,
                         new RelativeFace(
-                                upper,
+                                up,
                                 true,
                                 0,
                                 cw));
@@ -149,7 +149,7 @@ public class Cube
                                 !cw));
                 break;
 
-            case GREEN:
+            case UP:
                 // RELATIVE UPPER
                 relativeInfo.put(
                         Relative.UPPER,
@@ -184,7 +184,7 @@ public class Cube
                                 !cw));
                 break;
 
-            case BLUE:
+            case DOWN:
                 // RELATIVE UPPER
                 relativeInfo.put(
                         Relative.UPPER,
@@ -219,12 +219,12 @@ public class Cube
                                 cw));
                 break;
 
-            case RED:
+            case LEFT:
                 // RELATIVE UPPER
                 relativeInfo.put(
                         Relative.UPPER,
                         new RelativeFace(
-                                upper,
+                                up,
                                 false,
                                 0,
                                 false));
@@ -254,12 +254,12 @@ public class Cube
                                 false));
                 break;
 
-            case ORANGE:
+            case RIGHT:
                 // RELATIVE UPPER
                 relativeInfo.put(
                         Relative.UPPER,
                         new RelativeFace(
-                                upper,
+                                up,
                                 false,
                                 2,
                                 false));
@@ -352,21 +352,21 @@ public class Cube
         // Yellow
         printOne(down);
         printThree(new Face[]{left, back, right});
-        printOne(upper);
+        printOne(up);
 
         qRotate(1, true);
 
         // Yellow
         printOne(down);
         printThree(new Face[]{left, back, right});
-        printOne(upper);
+        printOne(up);
 
         qRotate(5, false);
 
         // Yellow
         printOne(down);
         printThree(new Face[]{left, back, right});
-        printOne(upper);
+        printOne(up);
     }
 
     public static void main(String[] args) {
