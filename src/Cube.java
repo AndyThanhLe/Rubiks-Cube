@@ -32,13 +32,28 @@ public class Cube
     private static final Face left = new Face(Colour.RED);
     private static final Face right = new Face(Colour.ORANGE);
 
+    private static HashMap<Integer, Face> cubeMapping;
+    static {
+        cubeMapping = new HashMap<>();
+        cubeMapping.put(0, front);
+        cubeMapping.put(1, back);
+        cubeMapping.put(2, upper);
+        cubeMapping.put(3, down);
+        cubeMapping.put(4, left);
+        cubeMapping.put(5, right);
+    }
+
     /**
      * @brief Rotate a face of the cube
-     * @param f Face that will be rotated
+     * @param faceNum Number of face that will be rotated
      * @param cw Clockwise if true, counterclockwise otherwise
      */
-    public static void qRotate(Face f, boolean cw)
+    public static void qRotate(int faceNum, boolean cw)
     {
+        // Retrieve face
+        Face f = cubeMapping.get(faceNum);
+
+
         // Deal with the current rotated face
         Colour[][] oldGrid = f.getTiles();
         Colour[][] newGrid = new Colour[3][3];
@@ -62,7 +77,7 @@ public class Cube
 
 
         // Adjust three tiles of four adjacent faces
-        HashMap<Relative, RelativeFace> relativeInfo  = new HashMap<Relative, RelativeFace>();
+        HashMap<Relative, RelativeFace> relativeInfo  = new HashMap<>();
         switch (f.getColour()) {
             case WHITE:
                 // RELATIVE UPPER
@@ -339,14 +354,14 @@ public class Cube
         printThree(new Face[]{left, back, right});
         printOne(upper);
 
-        qRotate(back, true);
+        qRotate(1, true);
 
         // Yellow
         printOne(down);
         printThree(new Face[]{left, back, right});
         printOne(upper);
 
-        qRotate(right, false);
+        qRotate(5, false);
 
         // Yellow
         printOne(down);
