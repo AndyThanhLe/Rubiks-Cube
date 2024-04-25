@@ -1,0 +1,8 @@
+# Untracked files:
+*.iml
+*.DS_Store
+*.class
+
+# Untracked directories:
+*.idea
+*out
